@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>table模块快速使用</title>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+</head>
+<body>
+
+    <table id="demo" lay-filter="test"></table>
+
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+
+            //第一个实例
+            table.render({
+                elem: '#demo'
+                , height: 312
+                , url: 'https://localhost:44347/api/DataReport/GetReceiptss' //数据接口
+                , page: true //开启分页
+                 , toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+                , totalRow: true //开启合计行
+                , limit: 10
+            , limits: [3, 5, 7, 10]
+                , cols: [[ //表头
+                   { type: 'checkbox', fixed: 'left' }
+                    , { field: 'RId', title: 'ID', width: 80, sort: true, fixed: 'left', totalRowText: '合计：' }
+                    , { field: 'Datatime', title: '日期', width: 80 }
+                    , { field: 'DName', title: '账户名', width: 90, sort: true, totalRow: true }
+                    , { field: 'CName', title: '推广渠道', width: 80, sort: true }
+                    , { field: 'Piont', title: '返点值', width: 80, sort: true, totalRow: true }
+                    , { field: 'Recharge', title: '充值金额', width: 150 }
+                    , { field: 'ShiRecharge', title: '实际充值金额', width: 200 }
+                    , { field: 'DaiRecharge', title: '代理商充值金额', width: 100 }
+                    , { field: 'CaiRecharge', title: '财务充值金额', width: 135, sort: true, totalRow: true }
+                    , { field: 'Balance', title: '当前余额', width: 135, sort: true, totalRow: true }
+                    , { field: 'ZheBalance', title: '折后当前余额', width: 135, sort: true, totalRow: true }
+                    , { field: 'XiaoFei', title: '消费金额', width: 135, sort: true, totalRow: true }
+                    , { field: 'ZheXiao', title: '折后消费金额', width: 135, sort: true, totalRow: true }
+                    , { fixed: 'right', width: 165, align: 'center', toolbar: '#barDemo' }
+                ]]
+            });
+
+        });
+    </script>
+</body>
+</html>
